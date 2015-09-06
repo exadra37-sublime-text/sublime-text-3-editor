@@ -106,7 +106,7 @@
             # symbolic link to allow open it from command line
             ln -s "$sublime_install_path" "$sublime_bin_path";
 
-            printf "\n\n${bc_green}Sublime Text is now installed. subl${bc_reset} \n\n";
+            printf "\n\n${bc_green}Sublime Text is now installed. ${bc_reset} \n\n";
 
         else
 
