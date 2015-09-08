@@ -9,17 +9,20 @@
 # Declaring Vars
 #################################################################################################################################################################
 
-    declare datetime=`date +%F_%H:%M:%S`;
+    declare local datetime=`date +%F_%H:%M:%S`;
     
-    declare script_dir=$( cd "$( dirname "$0" )" && pwd );
+    declare local script_dir=$( cd "$( dirname "$0" )" && pwd );
     
     # sublime
-    declare sublime_install_build="";
-    declare sublime_download_link="";
-    declare sublime_download_file="";
-    declare sublime_hardware="amd64"; # i386
-    declare sublime_bin_path="/usr/bin/sublime";
-    declare sublime_install_path="/opt/sublime_text/sublime_text";
+    declare local sublime_install_build="";
+    declare local sublime_download_link="";
+    declare local sublime_download_file="";
+    declare local sublime_hardware="amd64"; # i386
+    declare local sublime_bin_path="/usr/bin/sublime";
+    declare local sublime_install_path="/opt/sublime_text/sublime_text";
+    declare local sublime_package_name="sublime-text";
+    declare local sublime_package_executable_name="subl";
+    declare local sublime_package_executable_name2="sublime";
 
 
 #################################################################################################################################################################
@@ -27,6 +30,7 @@
 #################################################################################################################################################################
     
     source "$script_dir/../Source/bash-colours.source.sh";
+    source "$script_dir/../Source/Functions/packages.source.sh";
 
 
 #################################################################################################################################################################
@@ -81,7 +85,7 @@
 # Start Execution
 #################################################################################################################################################################
 
-    if [ $(dpkg -s sublime-text 2>/dev/null | grep -c "ok installed") -eq 0 ]
+    if ! isInstalled "$sublime_package_name" && ! isInstalled "$sublime_package_executable_name" && ! isInstalled "$sublime_package_executable_name2" 
         then
 
             [ -d /tmp ] || mkdir -p /tmp;
